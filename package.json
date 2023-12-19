@@ -1,0 +1,25 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nodebotanist/render-character-sheet-backend.git"
+  },
+  "type": "module",
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nodebotanist/render-character-sheet-backend/issues"
+  },
+  "homepage": "https://github.com/nodebotanist/render-character-sheet-backend#readme",
+  "dependencies": {
+    "redis": "^4.6.12",
+    "ws": "^8.15.1"
+  }
+}
