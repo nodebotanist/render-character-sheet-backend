@@ -13,7 +13,7 @@ const wss = new WebSocketServer({ port: 8080 });
 await client.del('rolls');
 let rolls = client.lRange('rolls', 0, -1) || [];
 
-wss.on('connection', function connection(ws) {
+wss.on('connection', async function connection(ws) {
   ws.on('error', console.error);
 
   ws.on('message', async function message(data) {
@@ -25,4 +25,9 @@ wss.on('connection', function connection(ws) {
     // client.set('rolls', rolls.toString());
     ws.send(JSON.stringify(rolls.toString()));
   });
+  
+  console.log("here")
+  rolls = await client.lRange('rolls', 0, -1) || [];
+  console.log("TEST", rolls)
+  ws.send(JSON.stringify(rolls.toString()));
 });
