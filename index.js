@@ -2,7 +2,7 @@ import { WebSocketServer } from 'ws';
 import { createClient } from 'redis';
 
 const client = await createClient({
-    url: "rediss://red-cm0cvfgl5elc73e9s7j0:yaKhbbUs0rlYVEJ90xU671nFbH5qJch8@oregon-redis.render.com:6379",
+    url: REDIS_URL,
     })
   .on('error', err => console.log('Redis Client Error', err))
   .connect()
@@ -21,13 +21,10 @@ wss.on('connection', async function connection(ws) {
     rolls = await client.lRange('rolls', 0, -1) || [];
     console.log(rolls);
     client.lPush('rolls', data);
-    rolls.push(data)
-    // client.set('rolls', rolls.toString());
+    rolls = await client.lRange('rolls', 0, -1) || [];
     ws.send(JSON.stringify(rolls.toString()));
   });
   
-  console.log("here")
   rolls = await client.lRange('rolls', 0, -1) || [];
-  console.log("TEST", rolls)
   ws.send(JSON.stringify(rolls.toString()));
 });
