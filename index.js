@@ -2,7 +2,7 @@ import { WebSocketServer } from 'ws';
 import { createClient } from 'redis';
 
 const client = await createClient({
-    url: REDIS_URL,
+    url: process.env.REDIS_URL,
     })
   .on('error', err => console.log('Redis Client Error', err))
   .connect()
